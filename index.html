@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Today, I...</title>
+  <title>Today I...</title>
 </head>
 <body>
   <h2>
     Today, I
   </h2>
   <p>Track what you do every day</p>
-  <form>
+  <form id="activity-form">
     <input type="text" name="activity" placeholder="What did you do?" />
     <input type="submit" value="Save">
   </form>
+  <script>
+    document.querySelector("#activity-form").addEventListener('submit', function() {
+      event.preventDefault();
+      var textInput = document.querySelector('input[name="activity"]');
+      alert('today i: ' + textInput.value)
+    })
+  </script>
 </body>
 </html>
