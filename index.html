@@ -43,6 +43,10 @@
       margin-left: var(--gutter-compensation);
     }
 
+    .grid--center {
+      align-items: center;
+    }
+
     .grid__item {
       box-sizing: border-box;
       flex: 0 0 auto;
@@ -222,7 +226,7 @@
   <div>
     <form
       id="activity-form"
-      autocomplete="off" class="grid">
+      autocomplete="off" class="grid grid--center">
       <div class="grid__item grid__item--3-4">
         <input type="text" name="activity" placeholder="What did you do?" class="w--1-1 font--11-10 p-"/>
       </div>
