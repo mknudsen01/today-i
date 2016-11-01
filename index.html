@@ -15,7 +15,8 @@
   <div id="activities">
   </div>
   <script>
-    var activities = [];
+    // grab the activities from local storage
+    var activities = localStorage.getItem('activities') ? JSON.parse(localStorage.getItem('activities')) : [];
     var activitiesHolder = document.querySelector('#activities');
 
     var clearActivitiesHolder = function() {
@@ -44,8 +45,9 @@
         return;
       }
 
-      // add activity to our activities collection
+      // add activity to our activities collection, which is now in localStorage
       activities.push(activityContent);
+      localStorage.setItem('activities', JSON.stringify(activities));
 
       // clear out the activity holder
       clearActivitiesHolder();
