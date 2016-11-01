@@ -2,7 +2,24 @@
 <html>
 <head>
   <title>Today I...</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <style type="text/css">
+
+    * { box-sizing: border-box; }
+    html {
+      font-family: 'Roboto', Arial, sans-serif;
+      font-weight: 300;
+    }
+
+    .font--400 {
+      font-weight: 400;
+    }
+
+    .font--11-10 { font-size: 1.1em; }
+    .font--12-10 { font-size: 1.2em; }
+    .font--13-10 { font-size: 1.3em; }
+    .font--14-10 { font-size: 1.4em; }
+    .font--15-10 { font-size: 1.5em; }
 
     /* start grid for layouts*/
     :root {
@@ -207,10 +224,10 @@
       id="activity-form"
       autocomplete="off" class="grid">
       <div class="grid__item grid__item--3-4">
-        <input type="text" name="activity" placeholder="What did you do?" class="w--1-1"/>
+        <input type="text" name="activity" placeholder="What did you do?" class="w--1-1 font--11-10 p-"/>
       </div>
       <div class="grid__item grid__item--1-4">
-        <input type="submit" value="Save" class="w--1-1">
+        <button class="w--1-1 font--11-10 pv-">Save</button>
       </div>
     </form>
   </div>
