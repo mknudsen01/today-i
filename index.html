@@ -16,6 +16,21 @@
   </div>
   <script>
     var activities = [];
+    var activitiesHolder = document.querySelector('#activities');
+
+    var clearActivitiesHolder = function() {
+      activitiesHolder.innerHTML = '';
+    };
+
+    var paintActivities = function() {
+      for (var i = 0, activitiesLength = activities.length; i < activitiesLength; i++) {
+        var activityHolder = document.createElement("p")
+        var activityText = activities[i];
+        activityHolder.innerHTML = activityText;
+        activitiesHolder.appendChild(activityHolder);
+      }
+    };
+
     document.querySelector("#activity-form").addEventListener('submit', function() {
       // prevent form submission/page reload
       event.preventDefault();
@@ -28,16 +43,10 @@
       activities.push(activityContent);
 
       // clear out the activity holder
-      var activitiesHolder = document.querySelector('#activities');
-      activitiesHolder.innerHTML = '';
+      clearActivitiesHolder();
 
       // loop through activity collection and write a paragraph for each one in the list
-      for (var i = 0, activitiesLength = activities.length; i < activitiesLength; i++) {
-        var activityHolder = document.createElement("p")
-        var activityText = activities[i];
-        activityHolder.innerHTML = activityText;
-        activitiesHolder.appendChild(activityHolder);
-      }
+      paintActivities();
     })
   </script>
 </body>
