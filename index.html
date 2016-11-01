@@ -12,11 +12,16 @@
     <input type="text" name="activity" placeholder="What did you do?" />
     <input type="submit" value="Save">
   </form>
+  <div id="activities">
+  </div>
   <script>
     document.querySelector("#activity-form").addEventListener('submit', function() {
       event.preventDefault();
       var textInput = document.querySelector('input[name="activity"]');
-      alert('today i: ' + textInput.value)
+      var activitiesHolder = document.querySelector('#activities');
+      var newActivity = document.createElement("p")
+      newActivity.innerHTML = textInput.value;
+      activitiesHolder.appendChild(newActivity);
     })
   </script>
 </body>
