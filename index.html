@@ -2,18 +2,109 @@
 <html>
 <head>
   <title>Today I...</title>
+  <style type="text/css">
+
+    /* start grid for layouts*/
+    :root {
+      --gutter-width: 1rem;
+      --gutter-compensation: calc((var(--gutter-width) * 0.5) * -1);
+      --half-gutter-width: calc((var(--gutter-width) * 0.5));
+    }
+
+    .container {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .grid {
+      box-sizing: border-box;
+      display: flex;
+      flex: 0 1 auto;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-right: var(--gutter-compensation);
+      margin-left: var(--gutter-compensation);
+    }
+
+    .grid__item {
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      padding-right: var(--half-gutter-width, 0.5rem);
+      padding-left: var(--half-gutter-width, 0.5rem);
+    }
+
+    .grid__item--1-1 {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+
+    .grid__item--1-2 {
+      flex-basis: 50%;
+      max-width: 50%;
+    }
+    .grid__item--1-3 {
+      flex-basis: 33.33333%;
+      max-width: 33.33333%;
+    }
+    .grid__item--2-3 {
+      flex-basis: 66.66667%;
+      max-width: 66.66667%;
+    }
+    .grid__item--1-4 {
+      flex-basis: 25%;
+      max-width: 25%;
+    }
+    .grid__item--3-4 {
+      flex-basis: 75%;
+      max-width: 75%;
+    }
+    /* end grid for layouts*/
+
+    /* start element widths */
+    .w--1-1 {
+      width: 100%;
+    }
+    .w--1-2 {
+      width: 50%;
+    }
+    .w--1-3 {
+      width: 33.33333%;
+    }
+    .w--1-4 {
+      width: 25%;
+    }
+    .w--2-3 {
+      width: 66.66667%;
+    }
+    .w--3-4 {
+      width: 75%;
+    }
+    /* end element widths */
+  </style>
 </head>
-<body>
-  <h2>
-    Today, I
-  </h2>
-  <p>Track what you do every day</p>
-  <form id="activity-form" autocomplete="off">
-    <input type="text" name="activity" placeholder="What did you do?" />
-    <input type="submit" value="Save">
-  </form>
-  <div id="activities">
+<body class="container">
+  <div class="grid">
+    <div class="grid__item grid__item--1-1">
+      <h2>Today, I</h2>
+      <p>Track what you do every day</p>
+    </div>
   </div>
+  <div>
+    <form
+      id="activity-form"
+      autocomplete="off" class="grid">
+      <div class="grid__item grid__item--3-4">
+        <input type="text" name="activity" placeholder="What did you do?" class="w--1-1"/>
+      </div>
+      <div class="grid__item grid__item--1-4">
+        <input type="submit" value="Save" class="w--1-1">
+      </div>
+    </form>
+  </div>
+  <section class="grid">
+    <div id="activities" class="grid__item grid__item--1-1">
+    </div>
+  </section>
   <script>
     // grab the activities from local storage
     var activities = localStorage.getItem('activities') ? JSON.parse(localStorage.getItem('activities')) : [];
