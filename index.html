@@ -38,6 +38,11 @@
       // grab text input's value
       var textInput = document.querySelector('input[name="activity"]');
       var activityContent = textInput.value;
+      textInput.value = '';
+
+      if (!activityContent) {
+        return;
+      }
 
       // add activity to our activities collection
       activities.push(activityContent);
