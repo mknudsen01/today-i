@@ -19,11 +19,14 @@
     var activities = localStorage.getItem('activities') ? JSON.parse(localStorage.getItem('activities')) : [];
     var activitiesHolder = document.querySelector('#activities');
 
-    var clearActivitiesHolder = function() {
+    // paint activities on initial page load
+    paintActivities();
+
+    function clearActivitiesHolder() {
       activitiesHolder.innerHTML = '';
     };
 
-    var paintActivities = function() {
+    function paintActivities() {
       for (var i = 0, activitiesLength = activities.length; i < activitiesLength; i++) {
         var activityHolder = document.createElement("p")
         var activityText = activities[i];
