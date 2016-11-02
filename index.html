@@ -42,10 +42,16 @@
 
     function paintActivities() {
       for (var i = 0, activitiesLength = activities.length; i < activitiesLength; i++) {
-        var activityHolder = document.createElement("p")
-        var activityText = activities[i];
-        activityHolder.innerHTML = activityText;
-        activitiesHolder.appendChild(activityHolder);
+        var activity = activities[i];
+        var eventText = activity.event;
+        var eventDate = activity.date;
+        var eventTextHolder = document.createElement("p");
+        var dateHolder = document.createElement("p");
+
+        dateHolder.innerHTML = eventDate;
+        eventTextHolder.innerHTML = eventText;
+        activitiesHolder.appendChild(dateHolder);
+        activitiesHolder.appendChild(eventTextHolder);
       }
     };
 
@@ -53,8 +59,14 @@
       // prevent form submission/page reload
       event.preventDefault();
 
+      // save the current date (start of the day)
+      var now = new Date();
+      var startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      var startOfDayTimestamp = startOfDay.getTime();
+
       // grab text input's value
       var textInput = document.querySelector('input[name="activity"]');
+
       var activityContent = textInput.value;
       textInput.value = '';
 
@@ -62,8 +74,8 @@
         return;
       }
 
-      // add activity to our activities collection, which is now in localStorage
-      activities.push(activityContent);
+      // add activity and date to our activities collection, which is now in localStorage
+      activities.push({event: activityContent, date: startOfDayTimestamp});
       localStorage.setItem('activities', JSON.stringify(activities));
 
       // clear out the activity holder
