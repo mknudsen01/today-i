@@ -30,7 +30,7 @@
   </section>
   <script>
     // grab the activities from local storage
-    var activities = localStorage.getItem('activities') ? JSON.parse(localStorage.getItem('activities')) : [];
+    var activityByDay = localStorage.getItem('activityByDay') ? JSON.parse(localStorage.getItem('activityByDay')) : {};
     var activitiesHolder = document.querySelector('#activities');
 
     // paint activities on initial page load
@@ -41,19 +41,21 @@
     };
 
     function paintActivities() {
-      for (var i = 0, activitiesLength = activities.length; i < activitiesLength; i++) {
-        var activity = activities[i];
-        var eventText = activity.event;
-        var eventDate = new Date(activity.date);
-        var eventTextHolder = document.createElement("p");
-        var dateHolder = document.createElement("p");
-
+      for (var day in activityByDay) {
+        var activities = activityByDay[day];
+        var dateHolder = document.createElement("h3");
+        var eventDate = new Date(parseInt(day));
         var dateOptions = { year: "numeric", month: "long", day: "numeric" };
-
-        dateHolder.innerHTML = eventDate.toLocaleDateString("en-US", dateOptions);
-        eventTextHolder.innerHTML = eventText;
         activitiesHolder.appendChild(dateHolder);
-        activitiesHolder.appendChild(eventTextHolder);
+        dateHolder.innerHTML = eventDate.toLocaleDateString("en-US", dateOptions);
+
+        for (var i = 0, activitiesLength = activities.length; i < activitiesLength; i++) {
+          var activity = activities[i];
+          var eventTextHolder = document.createElement("p");
+
+          eventTextHolder.innerHTML = activity;
+          activitiesHolder.appendChild(eventTextHolder);
+        }
       }
     };
 
@@ -76,9 +78,15 @@
         return;
       }
 
+
+
       // add activity and date to our activities collection, which is now in localStorage
-      activities.push({event: activityContent, date: startOfDayTimestamp});
-      localStorage.setItem('activities', JSON.stringify(activities));
+      if (activityByDay[startOfDayTimestamp]) {
+        activityByDay[startOfDayTimestamp].push(activityContent);
+      } else {
+        activityByDay[startOfDayTimestamp] = [activityContent];
+      }
+      localStorage.setItem('activityByDay', JSON.stringify(activityByDay));
 
       // clear out the activity holder
       clearActivitiesHolder();
