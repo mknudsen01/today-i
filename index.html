@@ -28,50 +28,10 @@
     <div id="activities" class="grid__item grid__item--1-1">
     </div>
   </section>
-  <script>
-    // grab the activities from local storage
-    var activities = localStorage.getItem('activities') ? JSON.parse(localStorage.getItem('activities')) : [];
-    var activitiesHolder = document.querySelector('#activities');
-
-    // paint activities on initial page load
-    paintActivities();
-
-    function clearActivitiesHolder() {
-      activitiesHolder.innerHTML = '';
-    };
-
-    function paintActivities() {
-      for (var i = 0, activitiesLength = activities.length; i < activitiesLength; i++) {
-        var activityHolder = document.createElement("p")
-        var activityText = activities[i];
-        activityHolder.innerHTML = activityText;
-        activitiesHolder.appendChild(activityHolder);
-      }
-    };
-
-    document.querySelector("#activity-form").addEventListener('submit', function() {
-      // prevent form submission/page reload
-      event.preventDefault();
-
-      // grab text input's value
-      var textInput = document.querySelector('input[name="activity"]');
-      var activityContent = textInput.value;
-      textInput.value = '';
-
-      if (!activityContent) {
-        return;
-      }
-
-      // add activity to our activities collection, which is now in localStorage
-      activities.push(activityContent);
-      localStorage.setItem('activities', JSON.stringify(activities));
-
-      // clear out the activity holder
-      clearActivitiesHolder();
-
-      // loop through activity collection and write a paragraph for each one in the list
-      paintActivities();
-    })
+  <script id="activity-template" type="text/template">
+    <p class="grid__item grid__item--1-4">{{activity}}</p>
   </script>
+  <script src="js/main.js"></script>
+
 </body>
 </html>
