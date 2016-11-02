@@ -2,9 +2,9 @@
   "name": "today-i",
   "version": "1.0.0",
   "description": "keep track of what you do every day",
-  "main": "index.js",
+  "main": "js/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "browser-sync start --server --files ['styles/*.css', 'js/*.js', '*.html']"
   },
   "repository": {
     "type": "git",
