@@ -42,10 +42,14 @@ html {
 
 .grid__item {
   box-sizing: border-box;
-  flex: 0 0 auto;
   padding-right: var(--half-gutter-width, 0.5rem);
   padding-left: var(--half-gutter-width, 0.5rem);
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
 }
+
+
 
 .grid__item--1-1 {
   flex-basis: 100%;
