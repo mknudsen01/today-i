@@ -1,0 +1,19 @@
+{
+  "name": "today-i",
+  "version": "1.0.0",
+  "description": "keep track of what you do every day",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mknudsen01/today-i.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mknudsen01/today-i/issues"
+  },
+  "homepage": "https://github.com/mknudsen01/today-i#readme"
+}
