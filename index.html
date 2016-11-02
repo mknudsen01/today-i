@@ -44,11 +44,13 @@
       for (var i = 0, activitiesLength = activities.length; i < activitiesLength; i++) {
         var activity = activities[i];
         var eventText = activity.event;
-        var eventDate = activity.date;
+        var eventDate = new Date(activity.date);
         var eventTextHolder = document.createElement("p");
         var dateHolder = document.createElement("p");
 
-        dateHolder.innerHTML = eventDate;
+        var dateOptions = { year: "numeric", month: "long", day: "numeric" };
+
+        dateHolder.innerHTML = eventDate.toLocaleDateString("en-US", dateOptions);
         eventTextHolder.innerHTML = eventText;
         activitiesHolder.appendChild(dateHolder);
         activitiesHolder.appendChild(eventTextHolder);
