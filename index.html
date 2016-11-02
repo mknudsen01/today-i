@@ -28,6 +28,9 @@
     <div id="activities" class="grid__item grid__item--1-1">
     </div>
   </section>
+  <script id="activity-template" type="text/template">
+    <p>{{activity}}</p>
+  </script>
   <script>
     // grab the activities from local storage
     var activityByDay = localStorage.getItem('activityByDay') ? JSON.parse(localStorage.getItem('activityByDay')) : {};
@@ -51,9 +54,11 @@
 
         for (var i = 0, activitiesLength = activities.length; i < activitiesLength; i++) {
           var activity = activities[i];
-          var eventTextHolder = document.createElement("p");
+          var eventTemplate = document.querySelector("#activity-template").cloneNode(true).innerHTML;
+          populatedTemplate = eventTemplate.replace("{{activity}}", activity);
 
-          eventTextHolder.innerHTML = activity;
+          var eventTextHolder = document.createElement("div");
+          eventTextHolder.innerHTML = populatedTemplate;
           activitiesHolder.appendChild(eventTextHolder);
         }
       }
