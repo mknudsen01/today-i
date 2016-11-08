@@ -4,8 +4,10 @@
   "description": "keep track of what you do every day",
   "main": "app.js",
   "scripts": {
-    "start": "browser-sync start --server --files ['styles/*.css', 'js/*.js', '*.html']",
-    "build": "webpack --progress --watch"
+    "start": "browser-sync start --server='app/build' --files ['app/build/index.html', 'app/build/bundle.js']",
+    "webserver": "node api/src/server.js",
+    "build": "node_modules/.bin/webpack --progess --watch",
+    "devserver": "node_modules/.bin/webpack-dev-server"
   },
   "repository": {
     "type": "git",
