@@ -7,11 +7,11 @@ function ActivityItem(props) {
   const { timestamp, activities = [] } = props;
   const datestring = moment(parseInt(timestamp), 'X').format('MMMM DD, YYYY');
   return (
-    <div>
-      <h3>{datestring}</h3>
+    <div className="grid">
+      <h3 className="grid__item grid__item--1-1">{datestring}</h3>
       {
         activities.map(activity =>
-          <div className="grid grid--center">{activity}</div>
+          <p className="grid__item grid__item--1-1">{activity}</p>
         )
       }
     </div>

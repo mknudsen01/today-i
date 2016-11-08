@@ -20,8 +20,10 @@ function ActivityPage(props) {
   return (
     <div className="grid mt">
       <Helmet title={`Activities`} />
-      <NewActivityForm />
-      <div className="grid__item col-1-1">
+      <div className="grid__item grid__item--1-1">
+        <NewActivityForm />
+      </div>
+      <div className="grid__item grid__item--1-1">
         {items}
       </div>
     </div>
