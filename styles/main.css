@@ -15,6 +15,19 @@ html {
 .font--15-10 { font-size: 1.5em; }
 
 /* start grid for layouts*/
+
+.height--100vh {
+  height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-dir--column {
+  flex-direction: column;
+}
+
 :root {
   --gutter-width: 1rem;
   --gutter-compensation: calc((var(--gutter-width) * 0.5) * -1);
