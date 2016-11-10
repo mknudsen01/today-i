@@ -29,6 +29,29 @@ router.get('/activities/:id', koaBody,
   }
 );
 
+router.post('/activities', koaBody,
+  function* createActivity() {
+    if (!this.request.body) {
+      this.throw("The body is empty", 400);
+    }
+    if (!this.request.body.text) {
+      this.throw("Missing activity text", 400);
+    }
+    if (!this.request.body.time) {
+      this.throw("Missing activity date", 400);
+    }
+
+    const { text, time } = this.request.body;
+
+    const activity = yield this.db.activities.create({
+      text,
+      time,
+    });
+
+    this.body = activity;
+  }
+);
+
 router.get('/', koaBody,
   function* index(next) {
     yield next;
