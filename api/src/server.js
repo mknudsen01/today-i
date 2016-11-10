@@ -19,6 +19,15 @@ router.get('/activities', koaBody,
   }
 );
 
+router.get('/activities/:id', koaBody,
+  function* getActivity() {
+    const id = this.params.id;
+    const activity = yield this.db.activities.find({
+      where: { id },
+    });
+    this.body = { activity };
+  }
+);
 
 router.get('/', koaBody,
   function* index(next) {
