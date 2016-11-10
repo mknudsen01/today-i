@@ -12,6 +12,13 @@ const PORT = env.PORT;
 
 app.context.db = db;
 
+router.get('/activities', koaBody,
+  function* getActivities() {
+    const activities = yield this.db.activities.findAll();
+    this.body = { activities };
+  }
+);
+
 
 router.get('/', koaBody,
   function* index(next) {
