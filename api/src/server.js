@@ -74,6 +74,16 @@ router.patch('/activities/:id', koaBody,
   }
 );
 
+router.delete('/activities/:id', koaBody,
+  function* deleteActivity() {
+    const id = this.params.id;
+    const deleted = yield this.db.activities.destroy({
+      where: { id },
+    });
+    this.body = deleted;
+  }
+);
+
 router.get('/', koaBody,
   function* index(next) {
     yield next;
