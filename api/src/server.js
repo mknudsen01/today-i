@@ -42,13 +42,35 @@ router.post('/activities', koaBody,
     }
 
     const { text, time } = this.request.body;
-
     const activity = yield this.db.activities.create({
       text,
       time,
     });
-
     this.body = activity;
+  }
+);
+
+router.patch('/activities/:id', koaBody,
+  function* updateActivity() {
+    const id = this.params.id;
+    const body = this.request.body;
+    const updates = {};
+
+    if (body.text) {
+      updates.text = body.text;
+    }
+    if (body.time) {
+      updates.time = body.time;
+    }
+
+    const activity = yield this.db.activities.find({
+      where: { id },
+    });
+    try {
+      this.body = yield activity.updateAttributes(updates);
+    } catch (err) {
+      this.body = err;
+    }
   }
 );
 
