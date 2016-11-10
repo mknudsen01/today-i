@@ -13,6 +13,16 @@ const PORT = env.PORT;
 app.context.db = db;
 
 
+router.get('/', koaBody,
+  function* index(next) {
+    yield next;
+    console.log(this.request.body);
+
+    // => POST body
+    this.body = "look it's the body!";
+  }
+);
+
 
 // x-response-time
 
