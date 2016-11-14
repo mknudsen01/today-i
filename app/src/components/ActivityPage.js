@@ -2,21 +2,20 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import ActivityItem from '~/components/ActivityItem';
 import NewActivityForm from '~/containers/NewActivityForm';
+import DayWithActivities from '~/components/DayWithActivities';
 
-import StorageService from '~/utils/StorageService';
+import { getActivitiesByDay } from '~/reducers';
 
 
 function ActivityPage(props) {
-  const { activityByDay } = props;
+  const { activitiesByDay } = props;
+  const daysWithActivities = Object.keys(activitiesByDay)
+    .sort((a, b) => b - a)
+    .map(day =>
+      <DayWithActivities day={day} activities={activitiesByDay[day]} />
+    );
 
-  // set the activities we're about to render to local storage
-  StorageService.set('activityByDay', activityByDay);
-
-  const items = Object.keys(activityByDay).map(timestamp =>
-    <ActivityItem timestamp={timestamp} activities={activityByDay[timestamp]} />
-  );
   return (
     <div className="grid mt">
       <Helmet title={`Activities`} />
@@ -24,19 +23,19 @@ function ActivityPage(props) {
         <NewActivityForm />
       </div>
       <div className="grid__item grid__item--1-1">
-        {items}
+        {daysWithActivities}
       </div>
     </div>
   );
 }
 
 ActivityPage.propTypes = {
-  activityByDay: PropTypes.object.isRequired,
+  activitiesByDay: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    activityByDay: state.activityByDay,
+    activitiesByDay: getActivitiesByDay(state),
   };
 }
 

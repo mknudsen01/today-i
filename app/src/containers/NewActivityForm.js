@@ -16,6 +16,7 @@ class NewActivityForm extends React.Component {
 
   componentDidMount() {
     this.activityInput.value = '';
+    this.props.actions.getActivities();
   }
 
   addActivity(e) {

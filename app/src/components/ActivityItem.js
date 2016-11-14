@@ -1,32 +1,29 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
+// import moment from 'moment';
 
 
 function ActivityItem(props) {
-  const { timestamp, activities = [] } = props;
-  const datestring = moment(parseInt(timestamp), 'X').format('MMMM DD, YYYY');
+  const { activity = {} } = props;
+  // const datestring = moment(parseInt(activity.time), 'X').format('MMMM DD, YYYY');
   return (
     <div className="grid">
-      <h3 className="grid__item grid__item--1-1">{datestring}</h3>
-      {
-        activities.map(activity =>
-          <p className="grid__item grid__item--1-1">{activity}</p>
-        )
-      }
+      <div className="grid__item grid__item--1-2">
+        {activity.time}
+      </div>
+      <div className="grid__item grid__item--1-2">
+        {activity.text}
+      </div>
     </div>
   );
 }
 
 ActivityItem.propTypes = {
-  timestamp: PropTypes.string,
-  activities: PropTypes.array,
+  activity: PropTypes.object,
 };
 
 function mapStateToProps() {
-  return {
-    data: PropTypes.object,
-  };
+  return {};
 }
 
 function mapDispatchToProps() {
