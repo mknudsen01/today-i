@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const koa = require('koa');
 const KoaBody = require('koa-body');
+const cors = require('koa-cors');
 const Router = require('koa-router');
 const db = require('./config/db.js');
 const env = require('./config/env');
@@ -11,11 +12,12 @@ const koaBody = new KoaBody();
 const PORT = env.PORT;
 
 app.context.db = db;
+app.use(cors());
 
 router.get('/activities', koaBody,
   function* getActivities() {
     const activities = yield this.db.activities.findAll();
-    this.body = { activities };
+    this.body = activities;
   }
 );
 
